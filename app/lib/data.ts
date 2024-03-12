@@ -85,8 +85,8 @@ export async function fetchCardData() {
       invoiceStatusPromise,
     ]);
     
-    const numberOfInvoices = prisma.invoices.count();
-    const numberOfCustomers = prisma.customers.count();
+    const numberOfInvoices : number  = await prisma.invoices.count();
+    const numberOfCustomers : number = await prisma.customers.count();
     const totalPaidInvoices = formatCurrency(data[0].rows[0].paid ?? '0');
     const totalPendingInvoices = formatCurrency(data[0].rows[0].pending ?? '0');
 
