@@ -1,14 +1,15 @@
 'use client';
 
 import {
-  UserGroupIcon,
+  DocumentDuplicateIcon,
   HomeIcon,
   InboxIcon,
-  DocumentDuplicateIcon,
+  UserGroupIcon,
 } from '@heroicons/react/24/outline';
+
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
+import { usePathname } from 'next/navigation';
 
 // ...
 // Map of links to display in the side navigation.

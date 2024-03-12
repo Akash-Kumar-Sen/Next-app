@@ -1,11 +1,10 @@
 import { sql } from '@vercel/postgres';
-import { unstable_noStore as noStore } from 'next/cache';
 import {
   CustomerField,
   CustomersTableType,
   InvoiceForm,
   InvoicesTable,
-  LatestInvoiceRaw,
+  InvoiceWithCustomer,
   User,
   Revenue,
 } from './definitions';
@@ -55,9 +54,14 @@ export async function fetchLatestInvoices() {
       take: 5
     });
 
-    const latestInvoices = data.map((invoice) => ({
-      ...invoice,
+    const latestInvoices : InvoiceWithCustomer[] = data.map((invoice : any) => ({
       amount: formatCurrency(invoice.amount),
+      customer: {
+        name: invoice.customer.name,
+        image_url: invoice.customer.image_url,
+        email: invoice.customer.email
+      },
+      id: invoice.id
     }));
     return latestInvoices;
   } catch (error) {
